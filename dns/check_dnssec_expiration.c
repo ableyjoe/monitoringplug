@@ -261,7 +261,8 @@ int process_arguments (int argc, char **argv) {
                 if (!is_hostname(optarg))
                     usage("Illegal domain name.");
                 domainname = optarg;
-                for (i = 0; domainname[i]; domainname[i] = toupper(domainname[i]));
+                for (i = 0; domainname[i]; i++)
+                    domainname[i] = toupper(domainname[i]));
                 break;
             case 'k':
                 trusted_keys = loadKeyfile(optarg);
