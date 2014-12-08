@@ -221,7 +221,7 @@ int main (int argc, char **argv) {
 }
 
 int process_arguments (int argc, char **argv) {
-    int c;
+    int c, i;
     int option = 0;
 
     static struct option longopts[] = {
@@ -260,7 +260,8 @@ int process_arguments (int argc, char **argv) {
             case 'D':
                 if (!is_hostname(optarg))
                     usage("Illegal domain name.");
-                domainname = toupper(optarg);
+                domainname = optarg;
+                for (i = 0; domainname[i]; domainname[i] = toupper(domainname[i]));
                 break;
             case 'k':
                 trusted_keys = loadKeyfile(optarg);
